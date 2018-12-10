@@ -4,13 +4,16 @@ import pymongo
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 
-mydb = myclient["oilersTest"]
+mydb = myclient["news"]
 
-mycol = mydb["oilersTweets"]
+mycol = mydb["newsTweets"]
 
 #inserted once.. only run this file once, or comment this section out if u fina run again
 tweets = []
-jsonFileToBeOpened = "user_timeline_OilersNation.json"
+jsonFileToBeOpened = "user_timeline_dutchdailynews.json"
+for line in open(jsonFileToBeOpened, 'r'):
+    tweets.append(json.loads(line))
+jsonFileToBeOpened = "user_timeline_DutchNewsNL.json"
 for line in open(jsonFileToBeOpened, 'r'):
     tweets.append(json.loads(line))
 
