@@ -1,3 +1,4 @@
+#doesnt work idk went another route
 import json
  
 
@@ -14,26 +15,21 @@ for line in open(jsonFileToBeOpened, 'r'):
 #     tweets.append(json.loads(line))
 count = 1
 for line in newsArr:
+	dictData = {}
 	idData = count
-	idLine = "{"+"'id':{},".format(idData)
 	textData = line.get('text')
-	textLine = "'text':{},".format(textData)
 	urlData = line.get('url')
-	urlLine = "'url':{},".format(urlData)
 	publicationdateData = line.get('publication date')
-	publicationdateLine = "'publication date':{},".format(publicationdateData)
 	sourceData = line.get('source')
-	sourceLine = "'source': {}".format(sourceData) + "}"
-	count = count + 1
+
+	dictData.update({"id":idData,"text":textData,"source": sourceData,"publication date": publicationdateData})
 
 
-
-	dictText = idLine + textLine + urlLine + publicationdateLine + sourceLine
-	print(dictText)
-	# with open(filename, 'wb') as outfile:
-	# 	json.dump(dictData, outfile)
+	with open(filename, 'wb') as outfile:
+		json.dump(dictData, outfile)
 	
-	with open(txtFileName, 'a') as the_file:
-		the_file.write(dictText + "\n")
+	# ith open(txtFileName, 'a') as the_file:
+	# 	the_file.write(dictData)
+	# 	the_file.write("\n")
 
 
